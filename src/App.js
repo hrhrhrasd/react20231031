@@ -1,19 +1,14 @@
 function App() {
-  const num1 = Math.ceil(Math.random() * 6);
-  const num2 = Math.ceil(Math.random() * 6);
-  let message;
-
-  if (num1 === num2) {
-    message = <h1>당첨</h1>;
-  } else {
-    message = <h1>꽝</h1>;
-  }
-
+  // jsx 가 js 코드로 변환됨
+  // 따라서 js 키워드 사용 불가
   return (
-    <div>
-      {num1 === num2 ? <h1>당첨</h1> : <h1>꽝</h1>}
-      {message}
-    </div>
+    <>
+      {/* class 속성은 className 으로 작성 */}
+      <div className="header">Lorem ipsum dolor.</div>
+      {/* for >> htmlFor */}
+      <label htmlFor="nameInput">이름</label>
+      <input type="text" id="nameInput" />
+    </>
   );
 }
 
