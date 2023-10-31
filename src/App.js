@@ -12,6 +12,7 @@ function App() {
         Lorem ipsum dolor.
       </p>
       <MyComp />
+      <MyComp2 />
     </div>
   );
 }
@@ -32,6 +33,21 @@ function MyComp() {
     <>
       <h1>hi comp</h1>
       <h2>asdad</h2>
+    </>
+  );
+}
+
+function MyComp2() {
+  let name = "손흥민";
+  let age = 33;
+  // {} : jsx 에서 js 코드를 작성하기 위한 기호
+  return (
+    <>
+      <h1>hello react</h1>
+      <h1>hello {name}</h1>
+      <h1>{age + 1} years</h1>
+      <h1>{name + " 선수"}</h1>
+      {/*  주석  */}
     </>
   );
 }
