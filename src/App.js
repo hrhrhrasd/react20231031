@@ -1,23 +1,9 @@
-import {
-  MyBox,
-  MyElem,
-  MyContainer,
-  name,
-  address,
-  person,
-} from "./component/MyBox";
+import { MyElem, city } from "./component/MyElem";
+import age from "./component/MyElem"; //default export 이기 때문에 이름이 맞지 않아도 됨
+import MyBox, { country, person } from "./component/MyBox";
 
 function App() {
-  console.log(name);
-  console.log(address);
-  console.log(person);
-  return (
-    <>
-      <MyBox />
-      <MyElem />
-      <MyContainer />
-    </>
-  );
+  return <></>;
 }
 
 export default App;
