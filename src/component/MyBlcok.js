@@ -1,5 +1,6 @@
-import style from "../css/MyText_style.module.css";
-export function MyText() {
+import style from "../css/yourStyle.module.css";
+
+export function MyBlcok() {
   return (
     <div>
       <h1 className={style.error}>Lorem ipsum dolor sit amet.</h1>
