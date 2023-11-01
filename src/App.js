@@ -1,18 +1,19 @@
 function App() {
   return (
     <>
-      <MyComp value={"흥민"} address={"신촌"} />
-      <MyComp value={"강인"} address={"강남"} />
+      <MyComp name={"흥민"} address={"신촌"} city={"서울"} age={33} />
+      <MyComp address={"신촌"} city={"서울"} age={33} />
+      <MyComp address={"신촌"} age={22} />
     </>
   );
 }
 
-function MyComp({ address, value }) {
+function MyComp({ name = "강인", address, city = "부산", age }) {
   return (
     <div>
-      <h1>
-        {value} : {address}거주
-      </h1>
+      <p>
+        이름 {name} 나이 {age} 주소 {city}, {address}
+      </p>
     </div>
   );
 }
