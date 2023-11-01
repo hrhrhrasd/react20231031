@@ -1,27 +1,33 @@
 function App() {
-  const myStyle = {
-    color: "white",
-    backgroundColor: "black", // lowerCamelCase
-    fontSize: "70px",
-    textAlign: "center",
-  }; //js object
-
   return (
     <>
-      {/* style 속성은 객체로 주어야 함 */}
-      <div style={myStyle}>Lorem ipsum dolor.</div>
-      <br />
-      <div
+      <h1
+        className={"note"}
         style={{
+          background: "blue",
           color: "white",
-          backgroundColor: "black",
-          fontSize: "70px",
-          textAlign: "center",
         }}
+        title={"제목요소"}
       >
-        Lorem ipsum dolor.
-      </div>
+        Lorem.
+      </h1>
+      <p title={"문단요소"}>Lorem ipsum dolor.</p>
+      <MyComp title={"myComp"} name={"흥민"} />
+      <MyComp title={"myComp2"} name={"강인"} />
     </>
+  );
+}
+
+//  함수 인자로
+//  사용한 곳 에서 넘긴 property들이 객체형태로 담김
+function MyComp(props) {
+  console.log(props);
+  return (
+    <div>
+      <h1 title={props.title} name={props.name}>
+        hello
+      </h1>
+    </div>
   );
 }
 export default App;
