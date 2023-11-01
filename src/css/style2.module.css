@@ -2,3 +2,11 @@
     color: orange;
     background: darksalmon;
 }
+
+.error {
+    border: 5px solid red;
+}
+
+.note {
+    padding-left: 50px;
+}
