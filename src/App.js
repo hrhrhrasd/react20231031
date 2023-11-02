@@ -4,6 +4,9 @@ import {
   Button,
   Flex,
   Input,
+  Link,
+  LinkBox,
+  LinkOverlay,
   Menu,
   MenuButton,
   MenuItem,
@@ -35,7 +38,12 @@ function App(props) {
             Dropdown
           </MenuButton>
           <MenuList>
-            <MenuItem>Download</MenuItem>
+            <MenuItem
+              as={"a"}
+              href={"https://chakra-ui.com/docs/components/link/usage"}
+            >
+              download
+            </MenuItem>
             <MenuItem>Create a Copy</MenuItem>
             <MenuItem>Mark as Draft</MenuItem>
             <MenuItem>Delete</MenuItem>
