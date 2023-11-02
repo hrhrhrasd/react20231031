@@ -4,7 +4,6 @@ import {
   FormLabel,
   SimpleGrid,
   Switch,
-  Textarea,
 } from "@chakra-ui/react";
 
 function App(props) {
