@@ -1,17 +1,30 @@
 import React from "react";
-import { Input } from "@chakra-ui/react";
 
 function App(props) {
-  let text = "initial text";
-  function handleChange(e) {
-    console.log(e.target.value);
-    text = e.target.value;
+  function handlClick(e) {
+    e.preventDefault();
+    console.log("다른 일을 시킴");
   }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    console.log("다른 일을 시킴");
+  }
+
   return (
     <div>
-      <p>{text}</p>
-      <Input onChange={handleChange} />
-      <Input onChange={handleChange} />
+      <a href="http://www.naver.com" onClick={handlClick}>
+        naver
+      </a>
+      <div>
+        <form
+          action="https://search.naver.com/search.naver"
+          onSubmit={handleSubmit}
+        >
+          <input type="text" name={"query"} />
+          <button>검색</button>
+        </form>
+      </div>
     </div>
   );
 }
