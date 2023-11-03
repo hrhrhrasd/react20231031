@@ -1,31 +1,36 @@
 import React from "react";
+import { Box, Button, Center } from "@chakra-ui/react";
 
 function App(props) {
-  function handlClick(e) {
-    e.preventDefault();
-    console.log("다른 일을 시킴");
+  function handleClick(e) {
+    // event bubbling 막는 메소드
+    e.stopPropagation();
+    console.log(e.target);
   }
-
-  function handleSubmit(e) {
-    e.preventDefault();
-    console.log("다른 일을 시킴");
-  }
-
   return (
-    <div>
-      <a href="http://www.naver.com" onClick={handlClick}>
-        naver
-      </a>
-      <div>
-        <form
-          action="https://search.naver.com/search.naver"
-          onSubmit={handleSubmit}
+    <Center
+      onClick={handleClick}
+      className={"outerBox"}
+      w={"200px"}
+      h={"200px"}
+      bg={"gold"}
+    >
+      <Center
+        onClick={handleClick}
+        className={"innerBox"}
+        w={"100px"}
+        h={"100px"}
+        bg={"blue"}
+      >
+        <Button
+          onClick={handleClick}
+          className={"button"}
+          colorScheme={"yellow"}
         >
-          <input type="text" name={"query"} />
-          <button>검색</button>
-        </form>
-      </div>
-    </div>
+          button1
+        </Button>
+      </Center>
+    </Center>
   );
 }
 
