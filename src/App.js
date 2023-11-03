@@ -25,6 +25,7 @@ function App(props) {
       >
         button3
       </MyComp>
+      <MyComp executeClick={() => console.log("arrow 3")}>button4</MyComp>
     </div>
   );
 }
