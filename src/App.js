@@ -1,36 +1,30 @@
-import React from "react";
-import { Box, Button, Center } from "@chakra-ui/react";
+import React, { useState } from "react";
+import { Button, Input } from "@chakra-ui/react";
+import { clear } from "@testing-library/user-event/dist/clear";
 
 function App(props) {
-  function handleClick(e) {
-    // event bubbling 막는 메소드
-    e.stopPropagation();
-    console.log(e.target);
+  // 상태(state)가 변경되면 component를 다시 그림 ( re render)
+
+  // state : react가 관리하는 component의 값
+
+  // state를 얻는 방법 : useState();
+
+  const [message, setMessage] = useState(""); // 배열을 리턴, index[0] : 현재 상태
+  // index[1] : state를 변경 할 수 있는 메소드
+
+  let text = "초기 메세지";
+  function handleInputChange(e) {
+    text = e.target.value;
+    console.log(text);
+    setMessage(text);
   }
   return (
-    <Center
-      onClick={handleClick}
-      className={"outerBox"}
-      w={"200px"}
-      h={"200px"}
-      bg={"gold"}
-    >
-      <Center
-        onClick={handleClick}
-        className={"innerBox"}
-        w={"100px"}
-        h={"100px"}
-        bg={"blue"}
-      >
-        <Button
-          onClick={handleClick}
-          className={"button"}
-          colorScheme={"yellow"}
-        >
-          button1
-        </Button>
-      </Center>
-    </Center>
+    <div>
+      <Input onChange={handleInputChange} />
+      <p>{text}</p>
+      <Button onClick={() => setMessage("")}>초기화</Button>
+      <p>{message}</p>
+    </div>
   );
 }
 
