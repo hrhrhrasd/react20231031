@@ -1,22 +1,28 @@
-import * as PropTypes from "prop-types";
-import { Box, Button, FormControl } from "@chakra-ui/react";
+import React from "react";
+import { Card, CardBody, CardHeader } from "@chakra-ui/react";
 
-function MyLink({ to, children }) {
+function MyBox({ color, hbg, bbg, children, w }) {
   return (
-    <FormControl>
-      <Button as={"a"} href={to}>
-        {children}
-      </Button>
-    </FormControl>
+    <>
+      <Card bg="blue">
+        <CardHeader>Lorem.</CardHeader>
+        <CardBody>{children}</CardBody>
+      </Card>
+    </>
   );
 }
 
-function App() {
+function App(props) {
   return (
-    <>
-      <MyLink to={"https://www.naver.com"}>to naver</MyLink>
-      <MyLink to={"https://www.daum.net"}>to daum</MyLink>
-    </>
+    <div>
+      <MyBox hbg={"green"} bbg={"blue"} color={"yellow"} w={"200px"}>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus
+        alias beatae corporis, excepturi ipsum similique?
+      </MyBox>
+      <Card bg={"red"}>
+        <CardBody>asdsadsad</CardBody>
+      </Card>
+    </div>
   );
 }
 
