@@ -13,8 +13,14 @@ function App(props) {
   const [numObj, setNumObj] = useState({ number: 0 });
 
   function handleNumObjChange() {
-    numObj.number = numObj.number + 1;
-    setNumObj(numObj);
+    // 잘못된 예시
+    // numObj.number = numObj.number + 1;
+    // setNumObj(numObj);
+
+    // 복사해서 사용
+    const numObj2 = { ...numObj };
+    numObj2.number = numObj2.number + 1;
+    setNumObj(numObj2);
   }
 
   return (
