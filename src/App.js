@@ -1,28 +1,33 @@
 import React, { useState } from "react";
-import { Button } from "@chakra-ui/react";
+import { Box, Input, Text } from "@chakra-ui/react";
 
 function App(props) {
-  const [number, setNumber] = useState(0);
+  const [userName, setUserName] = useState("");
+  const [email, setEmail] = useState("");
 
   return (
     <div>
-      <h1>{number}</h1>
-      {/* eslint-disable-next-line react/jsx-no-undef */}
-      <Button
-        onClick={() => {
-          setNumber(number + 1);
-        }}
-      >
-        증가
-      </Button>
-
-      <Button
-        onClick={() => {
-          setNumber(number - 1);
-        }}
-      >
-        감소
-      </Button>
+      <Box>
+        <Input
+          type={"text"}
+          value={userName}
+          onChange={(e) => {
+            setUserName(e.target.value);
+          }}
+        />
+      </Box>
+      <Box>
+        <Input
+          type={"text"}
+          value={email}
+          onChange={(e) => {
+            setEmail(e.target.value);
+          }}
+        ></Input>
+      </Box>
+      <Text>
+        {userName}의 email : {email}
+      </Text>
     </div>
   );
 }
