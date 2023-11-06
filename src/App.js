@@ -1,38 +1,38 @@
 import React, { useState } from "react";
-import { Button, Input, List, ListItem } from "@chakra-ui/react";
+import { Box, Button, ListItem, UnorderedList } from "@chakra-ui/react";
 
 function App(props) {
-  const [coffees, setCoffees] = useState(["라떼"]);
-  const [text, setText] = useState("");
+  const [items, setItems] = useState([]);
 
-  function handleButtonClick() {
-    // coffees.push(text);
-    // setCoffees(coffees);
-    // 새 배열을 만들어서 set state
-    const newCoffees = [...coffees];
-    newCoffees.push("text");
-    setCoffees(newCoffees);
+  function handleButtonClick(menu) {
+    setItems([...items, menu]);
+  }
+
+  function handleRemoveButtonClick(index) {
+    setItems([...items].filter((item, i) => i !== index));
+    // const nextItems = [...items];
+    // nextItems.splice(index, 1);
+    // setItems(nextItems);
   }
 
   return (
     <div>
-      <Input
-        onChange={(e) => {
-          setText(e.target.value);
-        }}
-      />
-      <Button onClick={handleButtonClick}>추가</Button>
-
-      <List>
-        {coffees.map((c, index) => {
-          return <ListItem key={index}>{c}</ListItem>;
-        })}
-      </List>
-      <List>
-        {coffees.map((c, index) => (
-          <ListItem key={index}>{c}</ListItem>
-        ))}
-      </List>
+      <Button onClick={() => handleButtonClick("커피")}>커피</Button>
+      <Button onClick={() => handleButtonClick("케잌")}>케잌</Button>
+      <Button onClick={() => handleButtonClick("아이스")}>아이스</Button>
+      <Box>
+        <UnorderedList>
+          {items.map((item, index) => (
+            <ListItem key={index}>
+              {item}
+              {index}
+              <Button onClick={() => handleRemoveButtonClick(index)}>
+                지우기
+              </Button>
+            </ListItem>
+          ))}
+        </UnorderedList>
+      </Box>
     </div>
   );
 }
