@@ -1,11 +1,40 @@
-import React from "react";
+import React, { useState } from "react";
+import { Box, Button, Text } from "@chakra-ui/react";
+
+function BOx() {
+  return null;
+}
 
 function App(props) {
-  // HOOK : use로 시작하는 함수
-  // component 상단에 작성
-  // 반복문 조건문 내부함수 등에서 사용 x
+  // set 메소드로 상태 변경
+  // 상태가 같은지 아닌지 판단 해서 re-render 결정
 
-  return <div></div>;
+  const [number, setNumber] = useState(0);
+  const [numObj, setNumObj] = useState({ number: 0 });
+
+  function handleNumObjChange() {
+    numObj.number = numObj.number + 1;
+    setNumObj(numObj);
+  }
+
+  return (
+    <div>
+      <Box>
+        <Button
+          onClick={() => {
+            setNumber(number + 1);
+          }}
+        >
+          number 변경
+        </Button>
+        <Text>{number}</Text>
+      </Box>
+      <Box>
+        <Button onClick={handleNumObjChange}>num 객체 변경</Button>
+        <Text>{numObj.number}</Text>
+      </Box>
+    </div>
+  );
 }
 
 export default App;
