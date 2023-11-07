@@ -17,6 +17,7 @@ function App(props) {
       <h1>{customer.address}</h1>
       <h1>{customer.city}</h1>
       <h1>{customer.customerID}</h1>
+      <h1>{[...customer]}</h1>
     </div>
   );
 }
