@@ -1,42 +1,79 @@
-import React from "react";
+import React, { useState } from "react";
+import { Box, Input, Text } from "@chakra-ui/react";
 import { useImmer } from "use-immer";
-import { Input, Text } from "@chakra-ui/react";
 
 function App(props) {
-  const [person, updatePerson] = useImmer({
+  const [person1, setPerson1] = useState({
     name: "son",
-    address: {
-      city: "seoul",
-      country: "korea",
-    },
+    city: "seoul",
+    email: "son@gmail",
   });
 
-  function handleNameChange(e) {
-    updatePerson((draft) => {
-      draft.name = e.target.value;
-    });
-  }
-
-  function handleCountryChange(e) {
-    updatePerson((draft) => {
-      draft.address.country = e.target.value;
-    });
-  }
-
-  function handleCityChange(e) {
-    updatePerson((draft) => {
-      draft.address.city = e.target.value;
-    });
-  }
+  const [person2, updatePerson2] = useImmer({
+    name: "kim",
+    city: "jeju",
+    email: "kim@gmail",
+  });
 
   return (
     <div>
-      <Input value={person.name} onChange={handleNameChange} />
-      <Input value={person.address.country} onChange={handleCountryChange} />
-      <Input value={person.address.city} onChange={handleCityChange} />
-      <Text>
-        {person.name} 은 {person.address.country}, {person.address.city} 에 거주
-      </Text>
+      <Box>
+        <Input
+          value={person1.name}
+          onChange={(e) => {
+            setPerson1({ ...person1, name: e.target.value });
+          }}
+        />
+        <Text>이름 : {person1.name}</Text>
+
+        <Input
+          value={person1.city}
+          onChange={(e) => {
+            setPerson1({ ...person1, city: e.target.value });
+          }}
+        />
+        <Text>도시 : {person1.city}</Text>
+
+        <Input
+          value={person1.email}
+          onChange={(e) => {
+            setPerson1({ ...person1, email: e.target.value });
+          }}
+        />
+        <Text>메일 : {person1.email}</Text>
+      </Box>
+
+      <Box>
+        <Input
+          value={person2.name}
+          onChange={(e) => {
+            updatePerson2((draft) => {
+              draft.name = e.target.value;
+            });
+          }}
+        />
+        <Text>이름 : {person2.name}</Text>
+
+        <Input
+          value={person2.city}
+          onChange={(e) => {
+            updatePerson2((draft) => {
+              draft.city = e.target.value;
+            });
+          }}
+        />
+        <Text>도시 : {person2.city}</Text>
+
+        <Input
+          value={person2.email}
+          onChange={(e) => {
+            updatePerson2((draft) => {
+              draft.email = e.target.value;
+            });
+          }}
+        />
+        <Text>메일 : {person2.email}</Text>
+      </Box>
     </div>
   );
 }
