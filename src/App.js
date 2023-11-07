@@ -16,16 +16,15 @@ function App(props) {
 
   function handleDoneButtonClick(id) {
     updateItems((draft) => {
-      for (let i = 0; i < draft.length; i++) {
-        draft[i].done = draft[i].id == id ? !draft[i].done : draft[i].done;
-      }
+      const target = draft.find((elem) => elem.id === id);
+      target.done = !target.done;
     });
   }
 
   function handleRemoveButtonClick(id) {
     updateItems((draft) => {
       for (let i = 0; i < draft.length; i++) {
-        if (draft[i].id == id) {
+        if (draft[i].id === id) {
           draft.splice(i, 1);
           break;
         }
