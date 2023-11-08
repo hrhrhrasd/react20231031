@@ -6,27 +6,32 @@ import {
   Outlet,
   Route,
   RouterProvider,
+  useNavigate,
 } from "react-router-dom";
-import { Box, Flex } from "@chakra-ui/react";
+import { Box, Button, Flex } from "@chakra-ui/react";
 
 function HomeComponent() {
+  // 경로 이동시 useNavigate hook 사용
+  const navigate = useNavigate();
   return (
     <Box>
       <Flex gap={"10px"}>
-        {/* react router 사용시 a태그 사용 x
-            Link Component 사용 */}
         <Box>
-          <a href={"/apath"}>a이동</a>
+          <Button onClick={() => (window.location.href = "/apath")}>
+            a로 이동
+          </Button>
         </Box>
         <Box>
-          <a href={"/bpath"}>b이동</a>
+          <Button onClick={() => (window.location.href = "/bpath")}>
+            b로 이동
+          </Button>
         </Box>
 
         <Box>
-          <Link to={"/apath"}>a이동</Link>
+          <Button onClick={() => navigate("/apath")}>a로 이동</Button>
         </Box>
         <Box>
-          <Link to={"/bpath"}>b이동</Link>
+          <Button onClick={() => navigate("/bpath")}>b로 이동</Button>
         </Box>
       </Flex>
       <Outlet />
