@@ -6,6 +6,12 @@ function App(props) {
   const [customerId, setCustomerId] = useState(0);
   const [customer, setCustomer] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const [customerIdList, setCustomerIdList] = useState([]);
+
+  useEffect(() => {
+    //고객번호들 가져오기
+    axios.get("/api/main1/sub6").then(({ data }) => setCustomerIdList(data));
+  }, []);
 
   useEffect(() => {
     setIsLoading(true);
@@ -23,16 +29,9 @@ function App(props) {
         placeholder={"고객 번호를 선택하세요"}
         onChange={(e) => setCustomerId(e.target.value)}
       >
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-        <option value="6">6</option>
-        <option value="7">7</option>
-        <option value="8">8</option>
-        <option value="9">9</option>
-        <option value="10">10</option>
+        {customerIdList.map((id) => (
+          <option value={id}>{id}</option>
+        ))}
       </Select>
       <Box>
         {isLoading ? (
