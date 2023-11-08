@@ -27,7 +27,9 @@ function App(props) {
     <div>
       <Select onChange={(e) => setEmployeeId(e.target.value)}>
         {employeeIdList.map((id) => (
-          <option value={id}>{id}</option>
+          <option key={id} value={id}>
+            {id}
+          </option>
         ))}
       </Select>
 
