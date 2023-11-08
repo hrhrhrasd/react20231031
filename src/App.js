@@ -14,6 +14,12 @@ const routes = createBrowserRouter(
       <Route path={"/path1"} element={<Box>경로1</Box>} />
       <Route path={"/path2"} element={<Box>경로2</Box>} />
       <Route path={"/path3"} element={<Box>경로3</Box>} />
+      <Route path={"/main1/path4"} element={<Box>경로4</Box>} />
+      <Route path={"/main1/path5"} element={<Box>경로5</Box>} />
+      <Route path={"/main2"}>
+        <Route path={"path1"} element={<Box>경로2-1</Box>} />
+        <Route path={"path2"} element={<Box>경로2-2</Box>} />
+      </Route>
     </>,
   ),
 );
