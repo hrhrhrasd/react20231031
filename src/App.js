@@ -1,65 +1,80 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   createBrowserRouter,
   createRoutesFromElements,
-  Link,
   Outlet,
   Route,
   RouterProvider,
   useNavigate,
+  useParams,
+  useSearchParams,
 } from "react-router-dom";
-import { Box, Button, Flex } from "@chakra-ui/react";
+import { Box, Text } from "@chakra-ui/react";
+import axios from "axios";
 
-function HomeComponent() {
-  // 경로 이동시 useNavigate hook 사용
+function Home() {
   const navigate = useNavigate();
   return (
     <Box>
-      <Flex gap={"10px"}>
-        <Box>
-          <Button onClick={() => (window.location.href = "/apath")}>
-            a로 이동
-          </Button>
-        </Box>
-        <Box>
-          <Button onClick={() => (window.location.href = "/bpath")}>
-            b로 이동
-          </Button>
-        </Box>
+      <Box>
+        <button onClick={() => navigate("/path1?id=1")}>1번 고객 조회</button>
+        <button onClick={() => navigate("/path1?id=2")}>2번 고객 조회</button>
+        <button onClick={() => navigate("/path1?id=3")}>3번 고객 조회</button>
 
-        <Box>
-          <Button onClick={() => navigate("/apath")}>a로 이동</Button>
-        </Box>
-        <Box>
-          <Button onClick={() => navigate("/bpath")}>b로 이동</Button>
-        </Box>
-      </Flex>
-      <Outlet />
+        <button onClick={() => navigate("/path2/seoul")}>seoul 조회</button>
+        <button onClick={() => navigate("/path2/busan")}>busan 조회</button>
+      </Box>
+      <Box>
+        <Outlet />
+      </Box>
     </Box>
   );
 }
 
 function AComp() {
-  return <Box>A요소</Box>;
+  // query string 을 얻기
+  const [searchParams] = useSearchParams();
+  // console.log(searchParams.get("id"));
+  const [customer, setCustomer] = useState(null);
+
+  useEffect(() => {
+    axios
+      .get("/api/main1/sub4?" + searchParams.toString())
+      .then(({ data }) => setCustomer(data))
+      .catch(() => setCustomer(null));
+  }, [searchParams]);
+
+  return (
+    <Box>
+      {customer === null ? (
+        <Text>조회 결과 없음</Text>
+      ) : (
+        <Text>
+          {searchParams.get("id")} 번 고객 : {customer.customerName}
+        </Text>
+      )}
+    </Box>
+  );
 }
 
 function BComp() {
-  return <Box>B요소</Box>;
+  // dynamic param을 얻는 hook
+  const params = useParams();
+  return <Box>{params.address}</Box>;
 }
 
 const routes = createBrowserRouter(
   createRoutesFromElements(
-    <>
-      <Route path={"/"} element={<HomeComponent />}>
-        <Route path={"apath"} element={<AComp />} />
-        <Route path={"bpath"} element={<BComp />} />
-      </Route>
-    </>,
+    <Route path={"/"} element={<Home />}>
+      <Route path={"path1"} element={<AComp />} />
+      {/* dynamic param : spring web mvc 의 path variable 과 유사 */}
+      <Route path={"path2/:address"} element={<BComp />} />
+    </Route>,
   ),
 );
 
 function App(props) {
-  return <RouterProvider router={routes}></RouterProvider>;
+  return <RouterProvider router={routes} />;
 }
 
 export default App;
