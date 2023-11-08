@@ -8,13 +8,16 @@ function App(props) {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    setIsLoading(true);
-    axios
-      .get("/api/main1/sub5?id=" + employeeId)
-      .then(({ data }) => setEmployee(data))
-      .catch(() => setEmployee(null))
-      .finally(() => setIsLoading(false));
+    if (employeeId !== 0) {
+      setIsLoading(true);
+      axios
+        .get("/api/main1/sub5?id=" + employeeId)
+        .then(({ data }) => setEmployee(data))
+        .catch(() => setEmployee(null))
+        .finally(() => setIsLoading(false));
+    }
   }, [employeeId]);
+
   return (
     <div>
       <Select onChange={(e) => setEmployeeId(e.target.value)}>
@@ -30,17 +33,24 @@ function App(props) {
         <option value="9">9</option>
         <option value="10">10</option>
       </Select>
+
       <Box>
-        {isLoading ? (
-          <Spinner />
+        {employeeId === 0 ? (
+          <Text>어서오세요</Text>
         ) : (
-          <>
-            {employee === null ? (
-              <Text>조회 직원 없음</Text>
+          <Box>
+            {isLoading ? (
+              <Spinner />
             ) : (
-              <Text>직원 이름 : {employee}</Text>
+              <>
+                {employee === null ? (
+                  <Text>조회 직원 없음</Text>
+                ) : (
+                  <Text>직원 이름 : {employee}</Text>
+                )}
+              </>
             )}
-          </>
+          </Box>
         )}
       </Box>
     </div>
