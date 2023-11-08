@@ -6,6 +6,11 @@ function App(props) {
   const [employeeId, setEmployeeId] = useState(0);
   const [employee, setEmployee] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [employeeIdList, setEmployeeIdList] = useState([]);
+
+  useEffect(() => {
+    axios.get("/api/main1/sub7").then(({ data }) => setEmployeeIdList(data));
+  }, []);
 
   useEffect(() => {
     if (employeeId !== 0) {
@@ -21,17 +26,9 @@ function App(props) {
   return (
     <div>
       <Select onChange={(e) => setEmployeeId(e.target.value)}>
-        <option value="-1">-1</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-        <option value="6">6</option>
-        <option value="7">7</option>
-        <option value="8">8</option>
-        <option value="9">9</option>
-        <option value="10">10</option>
+        {employeeIdList.map((id) => (
+          <option value={id}>{id}</option>
+        ))}
       </Select>
 
       <Box>
